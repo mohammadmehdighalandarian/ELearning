@@ -12,5 +12,8 @@ namespace LearningWeb_Core.Services
         long AddUser(User user);
 
         User loginUser(LoginViewModel user);
+
+        bool ActiveUser(string activationCode);
+
     }
 }

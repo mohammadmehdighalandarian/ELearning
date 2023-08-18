@@ -1,6 +1,7 @@
 ﻿using DataLayer.Content;
 using DataLayer.Entities.User;
 using LearningWeb_Core.DTOs.Account;
+using LearningWeb_Core.Generator;
 
 namespace LearningWeb_Core.Services
 {
@@ -33,6 +34,21 @@ namespace LearningWeb_Core.Services
         public User loginUser(LoginViewModel user)
         {
             return _siteContext.Users.SingleOrDefault(x => x.Email == user.Email);
+        }
+
+        public bool ActiveUser(string activationCode)
+        {
+            var User=_siteContext.Users.SingleOrDefault(x=>x.ActivateCode==activationCode);
+
+            if (User==null||User.IsActive)
+            {
+                return false;
+            }
+            User.IsActive= true;
+            User.ActivateCode = ActivationCode.GenerateActivationCode();
+            _siteContext.SaveChanges();
+
+            return true;
         }
     }
 }

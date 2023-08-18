@@ -113,5 +113,20 @@ namespace LearningSite.Controllers.Account
         #endregion
 
 
+
+
+
+        #region ActiveAccount
+        
+        public IActionResult ActiveAccount(string id)
+        {
+            ViewBag.IsActive = _userServices.ActiveUser(id);
+            return View("ActivateAccount");
+        }
+
+        #endregion
+
+
+
     }
 }
