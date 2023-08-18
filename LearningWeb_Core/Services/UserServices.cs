@@ -1,5 +1,6 @@
 ﻿using DataLayer.Content;
 using DataLayer.Entities.User;
+using LearningWeb_Core.DTOs.Account;
 
 namespace LearningWeb_Core.Services
 {
@@ -27,6 +28,11 @@ namespace LearningWeb_Core.Services
             _siteContext.Users.Add(user);
             _siteContext.SaveChanges();
             return user.Id;
+        }
+
+        public User loginUser(LoginViewModel user)
+        {
+            return _siteContext.Users.SingleOrDefault(x => x.Email == user.Email && x.Password == user.Password);
         }
     }
 }

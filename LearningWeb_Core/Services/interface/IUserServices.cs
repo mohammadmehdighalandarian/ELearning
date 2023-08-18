@@ -11,6 +11,6 @@ namespace LearningWeb_Core.Services
 
         long AddUser(User user);
 
-        User loginUser(LoginViewModel usee);
+        User loginUser(LoginViewModel user);
     }
 }
