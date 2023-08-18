@@ -32,7 +32,7 @@ namespace LearningWeb_Core.Services
 
         public User loginUser(LoginViewModel user)
         {
-            return _siteContext.Users.SingleOrDefault(x => x.Email == user.Email && x.Password == user.Password);
+            return _siteContext.Users.SingleOrDefault(x => x.Email == user.Email);
         }
     }
 }

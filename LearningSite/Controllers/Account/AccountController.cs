@@ -35,7 +35,7 @@ namespace LearningSite.Controllers.Account
 
             if (_userServices.IsEmailExist(FixingObject.FixingEmail(register.Email)))
             {
-                ModelState.AddModelError("Email","ایمیل معتبر نمی باشد");
+                ModelState.AddModelError("Email", "ایمیل معتبر نمی باشد");
                 return View(register);
             }
 
@@ -58,7 +58,7 @@ namespace LearningSite.Controllers.Account
 
             _userServices.AddUser(user);
 
-            return View("SuccesRegister",user);
+            return View("SuccesRegister", user);
         }
 
         #endregion
@@ -69,6 +69,44 @@ namespace LearningSite.Controllers.Account
         [HttpGet]
         public IActionResult Login()
         {
+            return View();
+        }
+
+        [Route("Login")]
+        [HttpPost]
+        public IActionResult Login(LoginViewModel NewUser)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(NewUser);
+            }
+
+            var User = _userServices.loginUser(NewUser);
+
+            ViewBag.IsSuccess = "False";
+            if (User != null)
+            {
+                if (User.Password.Equals(NewUser.Password))
+                {
+                    if (User.IsActive)
+                    {
+                        ViewBag.IsSuccess = "True";
+                        return View();
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "کاربر فعال نمی باشد";
+                        return View();
+                    }
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "نام کاربری با رمز عبور تطابق ندارد";
+                    return View();
+                }
+
+            }
+            ViewBag.ErrorMessage = "کاربر یافت نشد";
             return View();
         }
 

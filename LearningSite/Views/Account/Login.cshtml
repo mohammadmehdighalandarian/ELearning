@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Diagnostics.Eventing.Reader
+@model LearningWeb_Core.DTOs.Account.LoginViewModel
 @{
     ViewData["Title"] = "Login";
 }
@@ -8,12 +9,24 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        @if (User.Identity.IsAuthenticated)
+        @if (ViewBag.IsSuccess=="True")
+        {
+            <div class="alert alert-success">
+                خوش امدید.
+            </div>
+
+            <script>
+                var delay = 5000; 
+                setTimeout(function(){ window.location = "https://localhost:7089/"; }, delay);
+            </script>
+        }
+        else if (ViewBag.IsSuccess == "False")
         {
             <div class="alert alert-danger">
-                شما دسترسی ندارید
+                @ViewBag.ErrorMessage
             </div>
         }
+
         <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -23,12 +36,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input type="password" asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                    <input  class="form-check-input" asp-for="RemmeberMe" /> @Html.DisplayNameFor(model => model.RemmeberMe)
                 </label>
             </div>
             <div class="form-group">

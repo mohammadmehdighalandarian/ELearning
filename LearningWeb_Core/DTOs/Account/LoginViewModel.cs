@@ -11,5 +11,7 @@ namespace LearningWeb_Core.DTOs.Account
         [Required(ErrorMessage = "لطفا رمز عبور را وارد کنید.")]
         [MaxLength(200)]
         public string Password { get; set; }
+
+        public bool RemmeberMe { get; set; } = false;
     }
 }
