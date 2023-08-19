@@ -1,8 +1,11 @@
-﻿using DataLayer.Entities.User;
+﻿using System.Security.Claims;
+using DataLayer.Entities.User;
 using LearningWeb_Core.Convertors;
 using LearningWeb_Core.DTOs.Account;
 using LearningWeb_Core.Generator;
 using LearningWeb_Core.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningSite.Controllers.Account
@@ -90,6 +93,25 @@ namespace LearningSite.Controllers.Account
                 {
                     if (User.IsActive)
                     {
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.NameIdentifier, User.Id.ToString()),
+                            new Claim(ClaimTypes.Name, User.UserName),
+                            //new Claim("IsAdmin", User.IsAdmin.ToString()),
+                            // new Claim("CodeMeli", user.Email),
+
+                        };
+                        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                        var principal = new ClaimsPrincipal(identity);
+
+                        var properties = new AuthenticationProperties
+                        {
+                            IsPersistent = NewUser.RemmeberMe
+                        };
+
+                        HttpContext.SignInAsync(principal, properties);
+
                         ViewBag.IsSuccess = "True";
                         return View();
                     }
@@ -112,10 +134,6 @@ namespace LearningSite.Controllers.Account
 
         #endregion
 
-
-
-
-
         #region ActiveAccount
         
         public IActionResult ActiveAccount(string id)
@@ -125,6 +143,18 @@ namespace LearningSite.Controllers.Account
         }
 
         #endregion
+
+        #region Logout
+
+        [Route("/Logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/home/index");
+        }
+
+        #endregion
+
 
 
 

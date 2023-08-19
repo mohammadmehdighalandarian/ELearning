@@ -1,6 +1,7 @@
 ﻿using LearningSite.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LearningSite.Controllers
 {
@@ -16,6 +17,12 @@ namespace LearningSite.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        
+        public IActionResult ContactUs()
+        {
+            return View("Index");
         }
 
         public IActionResult Privacy()
