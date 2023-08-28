@@ -3,6 +3,7 @@ using DataLayer.Entities.User;
 using LearningWeb_Core.Convertors;
 using LearningWeb_Core.DTOs.Account;
 using LearningWeb_Core.Generator;
+using LearningWeb_Core.Senders;
 using LearningWeb_Core.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -13,10 +14,12 @@ namespace LearningSite.Controllers.Account
     public class AccountController : Controller
     {
         private readonly IUserServices _userServices;
+        private readonly IViewRenderService _viewRenderService;
 
-        public AccountController(IUserServices userServices)
+        public AccountController(IUserServices userServices, IViewRenderService viewRenderService)
         {
             _userServices = userServices;
+            _viewRenderService = viewRenderService;
         }
 
         #region Register
@@ -61,6 +64,13 @@ namespace LearningSite.Controllers.Account
 
             _userServices.AddUser(user);
 
+            #region Send Activation Email
+
+            string Body = _viewRenderService.RenderToStringAsync("_ActivationEmail", user);
+            SendEmail.Send(user.Email,"ایمیل فعال سازی", Body);
+
+            #endregion
+
             return View("SuccesRegister", user);
         }
 
@@ -97,7 +107,7 @@ namespace LearningSite.Controllers.Account
                         {
                             new Claim(ClaimTypes.NameIdentifier, User.Id.ToString()),
                             new Claim(ClaimTypes.Name, User.UserName),
-                            //new Claim("IsAdmin", User.IsAdmin.ToString()),
+                            //new Claim("IsAdmin", User..ToString()),
                             // new Claim("CodeMeli", user.Email),
 
                         };

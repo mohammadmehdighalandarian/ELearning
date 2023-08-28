@@ -24,6 +24,11 @@ namespace LearningWeb_Core.Services
             return _siteContext.Users.Any(x => x.UserName == userName);
         }
 
+        public User GetUserBy(string username)
+        {
+            return _siteContext.Users.SingleOrDefault(x => x.UserName == username);
+        }
+
         public long AddUser(User user)
         {
             _siteContext.Users.Add(user);
@@ -49,6 +54,18 @@ namespace LearningWeb_Core.Services
             _siteContext.SaveChanges();
 
             return true;
+        }
+
+        public PannelAccountViewModel ShowInfoInPannel(string username)
+        {
+            var User = GetUserBy(username);
+            PannelAccountViewModel UserVM = new PannelAccountViewModel()
+            {
+                Username = User.UserName,
+                Email = User.Email,
+                CreationDate = User.RegisterDate
+            };
+            return UserVM;
         }
     }
 }

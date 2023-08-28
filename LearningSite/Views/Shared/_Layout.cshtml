@@ -29,7 +29,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item pull-right">
-                                <a class="nav-link text-dark">@User.Identity.Name خوش آمدید !</a>
+                                <a asp-area="UserPannel" asp-controller="Home" asp-action="index" class="nav-link text-dark">@User.Identity.Name خوش آمدید !</a>
                             </li>
                             <li class="nav-item pull-right">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">خروج</a>

@@ -1,4 +1,5 @@
 using DataLayer.Content;
+using LearningWeb_Core.Convertors;
 using LearningWeb_Core.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ builder.Services.AddDbContext<SiteContext>(options =>
 
 
 builder.Services.AddTransient<IUserServices, UserServices>();
+builder.Services.AddTransient<IViewRenderService, RenderViewToString>();
 
 #endregion
 
@@ -56,8 +58,18 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+     endpoints.MapControllerRoute(
+        name: "areaRoute",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+});
+
 
 app.Run();
