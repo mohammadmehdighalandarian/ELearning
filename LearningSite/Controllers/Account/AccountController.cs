@@ -177,14 +177,60 @@ namespace LearningSite.Controllers.Account
 
         [Route("/ForgotPassword")]
         [HttpPost]
-        public IActionResult ForgotPassword(string email)
+        public IActionResult ForgotPassword(ForgotPasswordViewModel forgotPassword)
         {
+            if (!ModelState.IsValid)
+                return View(forgotPassword);
 
+            string fixedEmail = FixingObject.FixingEmail(forgotPassword.Email);
+            var User = _userServices.GetUserByEmail(fixedEmail);
+            if (User == null)
+            {
+                ModelState.AddModelError("Email", "کاربری با ایمیل وارد شده یافت نشد!");
+                return View();
+            }
+
+            string Email_body = _viewRenderService.RenderToStringAsync("_ForgotPasswordEmail", User);
+            SendEmail.Send(User.Email, "تغییر رمز عبور", Email_body);
+
+            ViewBag.IsSuccess = true;
             return View();
         }
 
         #endregion
 
+
+        #region ResetPassword
+
+        //[Route("/ResetPassword/{activecode}")]
+        //[HttpGet]
+        public IActionResult ResetPassword(string activecode)
+        {
+            return View(new ResetPasswordViewModel
+            {
+                ActiveCode = activecode
+            });
+        }
+
+        [HttpPost]
+        public IActionResult ResetPassword(ResetPasswordViewModel resetPasswordViewModel)
+        {
+            string ActiveCode = resetPasswordViewModel.ActiveCode;
+            string NewPassword = resetPasswordViewModel.Password;
+
+            if (!ModelState.IsValid)
+                return View();
+
+            var User = _userServices.getUserByActiveCode(ActiveCode);
+            if (User == null)
+                return NotFound();
+
+            _userServices.ResetPassword(ActiveCode, NewPassword);
+
+            return View();
+        }
+
+        #endregion
 
 
 

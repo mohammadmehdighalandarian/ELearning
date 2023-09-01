@@ -5,18 +5,24 @@ namespace LearningWeb_Core.Services
 {
     public interface IUserServices
     {
-        public bool IsEmailExist(string email);
+        bool IsEmailExist(string email);
 
-        public bool IsUserNameExist(string userName);
-
-        public User GetUserBy(string username);
+        bool IsUserNameExist(string userName);
 
         long AddUser(User user);
 
+        User GetUserBy(string username);
+
+        User getUserByActiveCode(string activeCode);
+
         User loginUser(LoginViewModel user);
 
+        User GetUserByEmail(string email);
+
         bool ActiveUser(string activationCode);
-            
+
+        void ResetPassword(string activeCode,string newPassword);
+
         PannelAccountViewModel ShowInfoInPannel(string userName);
 
     }

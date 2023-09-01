@@ -29,6 +29,11 @@ namespace LearningWeb_Core.Services
             return _siteContext.Users.SingleOrDefault(x => x.UserName == username);
         }
 
+        public User getUserByActiveCode(string activeCode)
+        {
+            return _siteContext.Users.SingleOrDefault(x => x.ActivateCode == activeCode);
+        }
+
         public long AddUser(User user)
         {
             _siteContext.Users.Add(user);
@@ -39,6 +44,11 @@ namespace LearningWeb_Core.Services
         public User loginUser(LoginViewModel user)
         {
             return _siteContext.Users.SingleOrDefault(x => x.Email == user.Email);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _siteContext.Users.SingleOrDefault(x => x.Email == email);
         }
 
         public bool ActiveUser(string activationCode)
@@ -56,14 +66,24 @@ namespace LearningWeb_Core.Services
             return true;
         }
 
+        public void ResetPassword(string activeCode, string newPassword)
+        {
+            var User = getUserByActiveCode(activeCode);
+            User.Password=newPassword;
+            _siteContext.Users.Update(User);
+            _siteContext.SaveChanges();
+
+        }
+
         public PannelAccountViewModel ShowInfoInPannel(string username)
         {
             var User = GetUserBy(username);
             PannelAccountViewModel UserVM = new PannelAccountViewModel()
             {
-                Username = User.UserName,
+                UserName = User.UserName,
                 Email = User.Email,
-                CreationDate = User.RegisterDate
+                RegisterDate = User.RegisterDate,
+                Wallet=0
             };
             return UserVM;
         }
