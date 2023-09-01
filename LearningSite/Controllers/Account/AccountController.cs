@@ -67,7 +67,7 @@ namespace LearningSite.Controllers.Account
             #region Send Activation Email
 
             string Body = _viewRenderService.RenderToStringAsync("_ActivationEmail", user);
-            SendEmail.Send(user.Email,"ایمیل فعال سازی", Body);
+            SendEmail.Send(user.Email, "ایمیل فعال سازی", Body);
 
             #endregion
 
@@ -138,6 +138,7 @@ namespace LearningSite.Controllers.Account
                 }
 
             }
+
             ViewBag.ErrorMessage = "کاربر یافت نشد";
             return View();
         }
@@ -145,7 +146,7 @@ namespace LearningSite.Controllers.Account
         #endregion
 
         #region ActiveAccount
-        
+
         public IActionResult ActiveAccount(string id)
         {
             ViewBag.IsActive = _userServices.ActiveUser(id);
@@ -161,6 +162,25 @@ namespace LearningSite.Controllers.Account
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Redirect("/home/index");
+        }
+
+        #endregion
+
+        #region ForgotPassword
+
+        [Route("/ForgotPassword")]
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [Route("/ForgotPassword")]
+        [HttpPost]
+        public IActionResult ForgotPassword(string email)
+        {
+
+            return View();
         }
 
         #endregion
