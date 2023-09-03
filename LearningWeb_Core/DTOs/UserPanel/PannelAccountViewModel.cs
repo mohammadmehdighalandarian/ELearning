@@ -1,4 +1,4 @@
-﻿namespace LearningWeb_Core.DTOs.Account
+﻿namespace LearningWeb_Core.DTOs.UserPanel
 {
     public class PannelAccountViewModel
     {

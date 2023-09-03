@@ -1,5 +1,5 @@
 ﻿@using LearningWeb_Core.Convertors
-@model LearningWeb_Core.DTOs.Account.PannelAccountViewModel
+@model LearningWeb_Core.DTOs.UserPanel.PannelAccountViewModel
 @{
     ViewData["Title"] = "پنل کاربری "+User.Identity.Name;
 }
@@ -17,15 +17,18 @@
     <div class="container">
         <div class="user-account">
             <div class="row">
-                <partial name="_SideBar"/>
+
+                <partial name="_SideBar" />
+
                 <div class="col-md-9 col-sm-8 col-xs-12">
                     <section class="user-account-content">
-                        <header><h1> داشبورد </h1></header>
+                        <header>
+                            <h1> داشبورد </h1></header>
                         <div class="inner">
                             <div class="account-information">
                                 <h3> اطلاعات کاربری </h3>
                                 <ul>
-                                    <li> <i class="zmdi zmdi-assignment-account"></i> نام کاربری :  @Model.UserName </li>
+                                    <li> <i class="zmdi zmdi-assignment-account"></i> نام کاربری : @Model.UserName </li>
                                     <li> <i class="zmdi zmdi-email"></i> ایمیل : @Model.Email </li>
                                     <li> <i class="zmdi zmdi-calendar-check"></i> تاریخ عضویت : @Date.To_Shamsi(Model.RegisterDate) </li>
                                     <li> <i class="zmdi zmdi-account"></i> موجودی حساب : @Model.Wallet تومان </li>

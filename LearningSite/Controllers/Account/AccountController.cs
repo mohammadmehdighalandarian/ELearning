@@ -111,8 +111,9 @@ namespace LearningSite.Controllers.Account
                             // new Claim("CodeMeli", user.Email),
 
                         };
+                        
                         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
+                        
                         var principal = new ClaimsPrincipal(identity);
 
                         var properties = new AuthenticationProperties

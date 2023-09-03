@@ -1,5 +1,6 @@
 ﻿using DataLayer.Entities.User;
 using LearningWeb_Core.DTOs.Account;
+using LearningWeb_Core.DTOs.UserPanel;
 
 namespace LearningWeb_Core.Services
 {
@@ -23,7 +24,19 @@ namespace LearningWeb_Core.Services
 
         void ResetPassword(string activeCode,string newPassword);
 
-        PannelAccountViewModel ShowInfoInPannel(string userName);
+        #region Panel
+
+        PannelAccountViewModel GetInformaion(string userName);
+        //PannelAccountViewModel GetUserInformation(int userId);
+
+        EditUserViewModel EditUser(string username);
+
+        SideBarUserPanelViewModel sideBarInfo(string username);
+        void EditProfile(string username,EditUserViewModel editUser);
+
+        #endregion
+
+
 
     }
 }
