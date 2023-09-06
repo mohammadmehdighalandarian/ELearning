@@ -1,8 +1,8 @@
 ﻿namespace LearningWeb_Core.Generator
 {
-    public class ActivationCode
+    public class UniqCode
     {
-        public static string GenerateActivationCode()
+        public static string GenerateUniqCode()
         {
             return Guid.NewGuid().ToString().Replace("-","");
         }

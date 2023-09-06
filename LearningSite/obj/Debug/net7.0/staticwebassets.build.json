@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TuSGACf1wScSZCrVX6su7gT4CORWOhN8ERJBpXyoUI0=",
+  "Hash": "dFxoRn2Yb/x8HfO03hb43ViypthrnbvssbsojVY15bY=",
   "Source": "LearningSite",
   "BasePath": "_content/LearningSite",
   "Mode": "Default",
@@ -4879,6 +4879,23 @@
       "OriginalItemSpec": "wwwroot\\UserAvatar\\017b49092db0430daa16ffb951b951f8.jpg"
     },
     {
+      "Identity": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\03e39f95da8d43dd977cbe513bb60cc3.jpg",
+      "SourceId": "LearningSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\",
+      "BasePath": "_content/LearningSite",
+      "RelativePath": "UserAvatar/03e39f95da8d43dd977cbe513bb60cc3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserAvatar\\03e39f95da8d43dd977cbe513bb60cc3.jpg"
+    },
+    {
       "Identity": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\08f7c17187fb450aa09f072faa57985e.jpg",
       "SourceId": "LearningSite",
       "SourceType": "Discovered",
@@ -4913,12 +4930,12 @@
       "OriginalItemSpec": "wwwroot\\UserAvatar\\4d2a216b8cfa45c39c5df9f65508c9fc.jpg"
     },
     {
-      "Identity": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\Defult.jpg",
+      "Identity": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\Defualt.png",
       "SourceId": "LearningSite",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\",
       "BasePath": "_content/LearningSite",
-      "RelativePath": "UserAvatar/Defult.jpg",
+      "RelativePath": "UserAvatar/Defualt.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -4927,7 +4944,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserAvatar\\Defult.jpg"
+      "OriginalItemSpec": "wwwroot\\UserAvatar\\Defualt.png"
     }
   ]
 }

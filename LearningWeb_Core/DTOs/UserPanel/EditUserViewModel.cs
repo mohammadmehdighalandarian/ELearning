@@ -13,8 +13,6 @@ namespace LearningWeb_Core.DTOs.UserPanel
         [EmailAddress(ErrorMessage = "ایمیل وارد شده متعبر نمیباشد")]
         public string Email { get; set; }
 
-        public IFormFile UserAvatar { get; set; }
-
-        public string  AvatarName { get; set; }
+        
     }
 }

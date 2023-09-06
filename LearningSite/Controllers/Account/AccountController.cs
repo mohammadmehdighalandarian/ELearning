@@ -55,7 +55,7 @@ namespace LearningSite.Controllers.Account
             {
                 UserName = register.userName,
                 Email = FixingObject.FixingEmail(register.Email),
-                ActivateCode = ActivationCode.GenerateActivationCode(),
+                ActivateCode = UniqCode.GenerateUniqCode(),
                 IsActive = false,
                 Password = register.Password,
                 RegisterDate = DateTime.Now,

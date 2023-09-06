@@ -269,6 +269,10 @@
       "PackagePath": "staticwebassets\\UserAvatar\\017b49092db0430daa16ffb951b951f8.jpg"
     },
     {
+      "Id": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\03e39f95da8d43dd977cbe513bb60cc3.jpg",
+      "PackagePath": "staticwebassets\\UserAvatar\\03e39f95da8d43dd977cbe513bb60cc3.jpg"
+    },
+    {
       "Id": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\08f7c17187fb450aa09f072faa57985e.jpg",
       "PackagePath": "staticwebassets\\UserAvatar\\08f7c17187fb450aa09f072faa57985e.jpg"
     },
@@ -277,8 +281,8 @@
       "PackagePath": "staticwebassets\\UserAvatar\\4d2a216b8cfa45c39c5df9f65508c9fc.jpg"
     },
     {
-      "Id": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\Defult.jpg",
-      "PackagePath": "staticwebassets\\UserAvatar\\Defult.jpg"
+      "Id": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\Defualt.png",
+      "PackagePath": "staticwebassets\\UserAvatar\\Defualt.png"
     },
     {
       "Id": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\courseFiles\\01_Asp.NetCore2Advance_Intro.rar",

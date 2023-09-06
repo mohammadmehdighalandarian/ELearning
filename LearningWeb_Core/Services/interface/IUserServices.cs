@@ -12,6 +12,10 @@ namespace LearningWeb_Core.Services
 
         long AddUser(User user);
 
+        void UpdateUser(User user);
+
+        void SaveChange();
+
         User GetUserBy(string username);
 
         User getUserByActiveCode(string activeCode);
@@ -31,8 +35,15 @@ namespace LearningWeb_Core.Services
 
         EditUserViewModel EditUser(string username);
 
-        SideBarUserPanelViewModel sideBarInfo(string username);
+        EditPictureUser editPicture(string username);
+
+        void EditPicture(string username, EditPictureUser editPicture);
         void EditProfile(string username,EditUserViewModel editUser);
+        SideBarUserPanelViewModel sideBarInfo(string username);
+
+        bool IsOldPassTrue(string username,string oldPass);
+        void ChangePassword(string username,string newPassword);
+
 
         #endregion
 

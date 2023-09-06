@@ -23,5 +23,17 @@ namespace DataLayer.Entities.User
 
 
         public List<UserRole> UserRoles { get; set; }
+
+        public User()
+        {
+            
+        }
+
+        #region Relation
+
+        public virtual List<Wallet.Wallet> Wallets { get; set; }
+
+        #endregion
+
     }
 }

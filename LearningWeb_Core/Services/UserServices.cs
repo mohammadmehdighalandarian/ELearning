@@ -25,6 +25,16 @@ namespace LearningWeb_Core.Services
             return _siteContext.Users.Any(x => x.UserName == userName);
         }
 
+        public void UpdateUser(User user)
+        {
+            _siteContext.Users.Update(user);
+        }
+
+        public void SaveChange()
+        {
+            _siteContext.SaveChanges();
+        }
+
         public User GetUserBy(string username)
         {
             return _siteContext.Users.SingleOrDefault(x => x.UserName == username);
@@ -38,7 +48,7 @@ namespace LearningWeb_Core.Services
         public long AddUser(User user)
         {
             _siteContext.Users.Add(user);
-            _siteContext.SaveChanges();
+            SaveChange();
             return user.Id;
         }
 
@@ -61,8 +71,8 @@ namespace LearningWeb_Core.Services
                 return false;
             }
             User.IsActive = true;
-            User.ActivateCode = ActivationCode.GenerateActivationCode();
-            _siteContext.SaveChanges();
+            User.ActivateCode = UniqCode.GenerateUniqCode();
+            SaveChange();
 
             return true;
         }
@@ -72,7 +82,7 @@ namespace LearningWeb_Core.Services
             var User = getUserByActiveCode(activeCode);
             User.Password = newPassword;
             _siteContext.Users.Update(User);
-            _siteContext.SaveChanges();
+            SaveChange();
 
         }
 
@@ -96,9 +106,46 @@ namespace LearningWeb_Core.Services
             {
                 userName = x.UserName,
                 Email = x.Email,
-                AvatarName = x.UserAvatar
-
             }).Single();
+        }
+
+        public EditPictureUser editPicture(string username)
+        {
+            return _siteContext.Users.Where(x => x.UserName == username).Select(u => new EditPictureUser()
+            {
+                AvatarName = u.UserAvatar
+            }).Single();
+        }
+
+        public void EditPicture(string username, EditPictureUser editPicture)
+        {
+            if (editPicture.UserAvatar != null)
+            {
+                string imagePath = "";
+                if (editPicture.AvatarName != "Defualt.png")
+                {
+                    imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", editPicture.AvatarName);
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
+                }
+
+                editPicture.AvatarName = UniqCode.GenerateUniqCode() + Path.GetExtension(editPicture.UserAvatar.FileName);
+                imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", editPicture.AvatarName);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    editPicture.UserAvatar.CopyTo(stream);
+                }
+            }
+
+            var user = GetUserBy(username);
+            
+            user.UserAvatar = editPicture.AvatarName;
+           
+
+            UpdateUser(user);
+            SaveChange();
         }
 
         public SideBarUserPanelViewModel sideBarInfo(string username)
@@ -111,14 +158,28 @@ namespace LearningWeb_Core.Services
             }).Single();
         }
 
+        public bool IsOldPassTrue(string username, string oldPass)
+        {
+            return _siteContext.Users.Any(x => x.UserName == username && x.Password == oldPass);
+        }
+
+        public void ChangePassword(string username, string newPassword)
+        {
+            var user= GetUserBy(username);
+            user.Password = newPassword;
+            UpdateUser(user);
+            SaveChange();
+        }
+
         public void EditProfile(string username, EditUserViewModel editUser)
         {
+            
             var user = GetUserBy(username);
             user.UserName = editUser.userName;
-           // user.UserAvatar = editUser.AvatarName;
             user.Email = editUser.Email;
-            _siteContext.Users.Update(user);
-            _siteContext.SaveChanges();
+
+            UpdateUser(user);
+            SaveChange();
         }
     }
 }
