@@ -26,6 +26,10 @@ namespace DataLayer.Mapping
                 .WithOne(x => x.User)
                 .HasForeignKey(x => x.UserId);
 
+            builder.HasMany(x => x.Wallets)
+                .WithOne(x => x.User)
+                .HasForeignKey(x => x.UsersId);
+
             #endregion
 
 

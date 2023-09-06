@@ -107,11 +107,11 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Entities.Wallet.Wallet", b =>
                 {
-                    b.Property<int>("WalletId")
+                    b.Property<long>("WalletId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WalletId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("WalletId"));
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
@@ -127,31 +127,25 @@ namespace DataLayer.Migrations
                     b.Property<bool>("IsPay")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<long>("UserId1")
+                    b.Property<long>("TypesId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("WalletTypeTypeId")
-                        .HasColumnType("int");
+                    b.Property<long>("UsersId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("WalletId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("TypesId");
 
-                    b.HasIndex("WalletTypeTypeId");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Wallets");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.Wallet.WalletType", b =>
                 {
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
+                    b.Property<long>("TypeId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("TypeTitle")
                         .IsRequired()
@@ -184,15 +178,15 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Entities.Wallet.Wallet", b =>
                 {
-                    b.HasOne("DataLayer.Entities.User.User", "User")
+                    b.HasOne("DataLayer.Entities.Wallet.WalletType", "WalletType")
                         .WithMany("Wallets")
-                        .HasForeignKey("UserId1")
+                        .HasForeignKey("TypesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataLayer.Entities.Wallet.WalletType", "WalletType")
+                    b.HasOne("DataLayer.Entities.User.User", "User")
                         .WithMany("Wallets")
-                        .HasForeignKey("WalletTypeTypeId")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

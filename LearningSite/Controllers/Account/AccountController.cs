@@ -82,6 +82,7 @@ namespace LearningSite.Controllers.Account
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.ErrorMessage = null;
             return View();
         }
 

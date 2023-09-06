@@ -9,16 +9,20 @@ namespace DataLayer.Entities.Wallet
 {
     public class Wallet
     {
+        public Wallet()
+        {
+
+        }
         [Key]
-        public int WalletId { get; set; }
+        public long WalletId { get; set; }
 
         [Display(Name = "نوع تراکنش")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public int TypeId { get; set; }
+        public long TypesId { get; set; }
 
         [Display(Name = "کاربر")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public int UserId { get; set; }
+        public long UsersId { get; set; }
 
         [Display(Name = "مبلغ")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -35,15 +39,12 @@ namespace DataLayer.Entities.Wallet
         public DateTime CreateDate { get; set; }
 
 
-        public Wallet()
-        {
-            
-        }
+
 
         #region Relation
 
-        public virtual User.User User { get; set; }
-        public virtual WalletType WalletType { get; set; }
+        public  User.User User { get; set; }
+        public  WalletType WalletType { get; set; }
 
         #endregion
     }

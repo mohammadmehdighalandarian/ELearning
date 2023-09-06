@@ -35,6 +35,8 @@ namespace DataLayer.Content
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new UserRoleMapping());
             modelBuilder.ApplyConfiguration(new RoleMapping());
+            modelBuilder.ApplyConfiguration(new WalletMapping());
+            modelBuilder.ApplyConfiguration(new WalletTypeMapping());
 
         }
     }

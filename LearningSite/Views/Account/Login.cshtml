@@ -13,7 +13,7 @@
 
 <main class="client-page">
     <div class="container-content">
-        @if (ViewBag.IsSuccess != null)
+        @if (ViewBag.IsSuccess == "True")
         {
             <div class="alert alert-success">
                 <p class="help-block">ورود با موفقیت انجام شد</p>
@@ -25,6 +25,13 @@
                 setTimeout(function () { window.location = "/UserPannel"; }, delay);
             </script>
         }
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-success">
+                <p class="help-block">@ViewBag.ErrorMessage</p>
+            </div>
+        }
+
 
         @if (ViewBag.EditProfile != null)
         {
