@@ -1,5 +1,4 @@
-﻿using LearningSite.Controllers.Account;
-using LearningWeb_Core.DTOs.UserPanel;
+﻿using LearningWeb_Core.DTOs.UserPanel;
 using LearningWeb_Core.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;

@@ -363,6 +363,7 @@ C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Micr
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.CodeAnalysis.Features.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.CodeAnalysis.Workspaces.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.DiaSymReader.dll
@@ -383,6 +384,7 @@ C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Micr
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.NET.StringTools.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.VisualBasic.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\dotnet-aspnet-codegenerator-design.dll
@@ -418,6 +420,7 @@ C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\Syst
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\System.Security.Permissions.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\ZarinpalSandbox.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\af\Humanizer.resources.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\ar\Humanizer.resources.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\az\Humanizer.resources.dll
@@ -557,6 +560,14 @@ C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\ru\M
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\debian-x64\native\libuv.so
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\fedora-x64\native\libuv.so
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\opensuse-x64\native\libuv.so
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\osx\native\libuv.dylib
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\rhel-x64\native\libuv.so
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\win7-arm\native\libuv.dll
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\win7-x64\native\libuv.dll
+C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\win7-x86\native\libuv.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\MohammadMehdi\Desktop\WebsiteProject\LearningSite\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll

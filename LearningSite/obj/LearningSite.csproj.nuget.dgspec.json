@@ -57,6 +57,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.10, )"
+            },
+            "zarinpalsandbox": {
+              "target": "Package",
+              "version": "[2.0.4, )"
             }
           },
           "imports": [
@@ -219,6 +223,10 @@
             "Microsoft.AspNetCore.Mvc.ViewFeatures": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "zarinpalsandbox": {
+              "target": "Package",
+              "version": "[2.0.4, )"
             }
           },
           "imports": [

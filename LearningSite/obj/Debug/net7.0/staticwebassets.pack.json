@@ -285,6 +285,10 @@
       "PackagePath": "staticwebassets\\UserAvatar\\Defualt.png"
     },
     {
+      "Id": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\a1f0a01ab94646deb0608d9223f4d27b.jpg",
+      "PackagePath": "staticwebassets\\UserAvatar\\a1f0a01ab94646deb0608d9223f4d27b.jpg"
+    },
+    {
       "Id": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\courseFiles\\01_Asp.NetCore2Advance_Intro.rar",
       "PackagePath": "staticwebassets\\courseFiles\\01_Asp.NetCore2Advance_Intro.rar"
     },

@@ -1,6 +1,9 @@
 ﻿using DataLayer.Entities.User;
+using DataLayer.Entities.Wallet;
 using LearningWeb_Core.DTOs.Account;
+using LearningWeb_Core.DTOs.AdminPanel;
 using LearningWeb_Core.DTOs.UserPanel;
+using LearningWeb_Core.DTOs.UserPanel.Wallet;
 
 namespace LearningWeb_Core.Services
 {
@@ -28,7 +31,9 @@ namespace LearningWeb_Core.Services
 
         void ResetPassword(string activeCode,string newPassword);
 
-        #region Panel
+        long GetUserIdByUserName(string userName);
+
+        #region User Panel
 
         PannelAccountViewModel GetInformaion(string userName);
         //PannelAccountViewModel GetUserInformation(int userId);
@@ -44,6 +49,26 @@ namespace LearningWeb_Core.Services
         bool IsOldPassTrue(string username,string oldPass);
         void ChangePassword(string username,string newPassword);
 
+
+        #endregion
+
+
+        #region Wallet
+
+        int BalanceUserWallet(string username);
+        List<WalletViewModel>GetAllTransactions(string username);
+        long ChargeWallet(string userName, int amount, string description, bool isPay = false);
+        long AddWallet(Wallet wallet);
+        Wallet GetWalletByWalletId(long walletId);
+        void UpdateWallet(Wallet wallet);
+
+        #endregion
+
+
+        #region Admin Panel  
+
+        UserForAdminViewModel GetUsers(int pageId = 1, string filterEmail = "", string filterUserName = "");
+        long CreateUserByAdmin(CreateUserForAdminViewmodel model);
 
         #endregion
 

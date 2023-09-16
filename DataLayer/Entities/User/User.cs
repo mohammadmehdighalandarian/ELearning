@@ -21,6 +21,7 @@ namespace DataLayer.Entities.User
 
         public DateTime RegisterDate { get; set; }
 
+        public bool Isdeleted { get; set; }=false;
 
         public List<UserRole> UserRoles { get; set; }
 

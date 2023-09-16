@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
+builder.Services.AddRazorPages();
 
 
 #region Db Context
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<SiteContext>(options =>
 
 builder.Services.AddTransient<IUserServices, UserServices>();
 builder.Services.AddTransient<IViewRenderService, RenderViewToString>();
+builder.Services.AddTransient<IPermitionServices, PermitionServices>();
 
 #endregion
 
@@ -57,13 +59,14 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapRazorPages();
 
 
 app.UseEndpoints(endpoints =>
 {
-     endpoints.MapControllerRoute(
-        name: "areaRoute",
-        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute(
+       name: "areaRoute",
+       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
     endpoints.MapControllerRoute(
         name: "default",

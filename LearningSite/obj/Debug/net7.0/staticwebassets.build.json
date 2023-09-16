@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dFxoRn2Yb/x8HfO03hb43ViypthrnbvssbsojVY15bY=",
+  "Hash": "scrB9OCvvHjkG0O4BySZ1Pme8Q6E8V2A3PuGbcOjNgI=",
   "Source": "LearningSite",
   "BasePath": "_content/LearningSite",
   "Mode": "Default",
@@ -4928,6 +4928,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UserAvatar\\4d2a216b8cfa45c39c5df9f65508c9fc.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\a1f0a01ab94646deb0608d9223f4d27b.jpg",
+      "SourceId": "LearningSite",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\",
+      "BasePath": "_content/LearningSite",
+      "RelativePath": "UserAvatar/a1f0a01ab94646deb0608d9223f4d27b.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserAvatar\\a1f0a01ab94646deb0608d9223f4d27b.jpg"
     },
     {
       "Identity": "C:\\Users\\MohammadMehdi\\Desktop\\WebsiteProject\\LearningSite\\wwwroot\\UserAvatar\\Defualt.png",

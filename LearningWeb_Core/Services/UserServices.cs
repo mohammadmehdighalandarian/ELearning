@@ -1,8 +1,12 @@
 ﻿using DataLayer.Content;
 using DataLayer.Entities.User;
+using DataLayer.Entities.Wallet;
 using LearningWeb_Core.DTOs.Account;
+using LearningWeb_Core.DTOs.AdminPanel;
 using LearningWeb_Core.DTOs.UserPanel;
+using LearningWeb_Core.DTOs.UserPanel.Wallet;
 using LearningWeb_Core.Generator;
+
 
 namespace LearningWeb_Core.Services
 {
@@ -86,6 +90,11 @@ namespace LearningWeb_Core.Services
 
         }
 
+        public long GetUserIdByUserName(string userName)
+        {
+            return _siteContext.Users.Single(x => x.UserName == userName).Id;
+        }
+
         public PannelAccountViewModel GetInformaion(string username)
         {
             var User = GetUserBy(username);
@@ -94,7 +103,7 @@ namespace LearningWeb_Core.Services
                 UserName = User.UserName,
                 Email = User.Email,
                 RegisterDate = User.RegisterDate,
-                Wallet = 0
+                Wallet = BalanceUserWallet(username)
             };
             return UserVM;
         }
@@ -140,9 +149,9 @@ namespace LearningWeb_Core.Services
             }
 
             var user = GetUserBy(username);
-            
+
             user.UserAvatar = editPicture.AvatarName;
-           
+
 
             UpdateUser(user);
             SaveChange();
@@ -165,15 +174,135 @@ namespace LearningWeb_Core.Services
 
         public void ChangePassword(string username, string newPassword)
         {
-            var user= GetUserBy(username);
+            var user = GetUserBy(username);
             user.Password = newPassword;
             UpdateUser(user);
             SaveChange();
         }
 
+        public int BalanceUserWallet(string username)
+        {
+            long CurentUserId = GetUserIdByUserName(username);
+
+            var variz = _siteContext.Wallets
+                .Where(x => x.UsersId == CurentUserId && x.IsPay == true && x.TypesId == 1)
+                .Select(x=>x.Amount)
+                .ToList();
+
+            var Bardasht= _siteContext.Wallets
+                .Where(x => x.UsersId == CurentUserId && x.IsPay == true && x.TypesId == 2)
+                .Select(x => x.Amount)
+                .ToList();
+            
+            return variz.Sum()-Bardasht.Sum();
+        }
+
+        public List<WalletViewModel> GetAllTransactions(string username)
+        {
+            long CurentUserId = GetUserIdByUserName(username);
+            return _siteContext.Wallets.Where(x => x.UsersId == CurentUserId)
+                .Select(x => new WalletViewModel()
+                {
+                    Amount = x.Amount,
+                    DateTime = x.CreateDate,
+                    Description = x.Description,
+                    Type = x.TypesId,
+                    Status = x.IsPay.ToString()
+                }).ToList();
+        }
+
+        public long ChargeWallet(string userName, int amount, string description, bool isPay = false)
+        {
+            Wallet wallet = new Wallet()
+            {
+                Amount = amount,
+                CreateDate = DateTime.Now,
+                Description = description,
+                IsPay = isPay,
+                TypesId = 1,
+                UsersId = GetUserIdByUserName(userName)
+            };
+           return AddWallet(wallet);
+        }
+
+        public long AddWallet(Wallet wallet)
+        {
+            _siteContext.Wallets.Add(wallet);
+            SaveChange();
+            return wallet.WalletId;
+        }
+
+        public Wallet GetWalletByWalletId(long walletId)
+        {
+            return _siteContext.Wallets.Find(walletId);
+        }
+
+        public void UpdateWallet(Wallet wallet)
+        {
+            _siteContext.Wallets.Update(wallet);
+            SaveChange();
+        }
+
+        public UserForAdminViewModel GetUsers(int pageId = 1, string filterEmail = "", string filterUserName = "")
+        {
+            IQueryable<User> result = _siteContext.Users;
+
+            if (!string.IsNullOrEmpty(filterEmail))
+            {
+                result = result.Where(u => u.Email.Contains(filterEmail));
+            }
+
+            if (!string.IsNullOrEmpty(filterUserName))
+            {
+                result = result.Where(u => u.UserName.Contains(filterUserName));
+            }
+            // Show Item In Page
+            int take = 20;
+            int skip = (pageId - 1) * take;
+
+
+            UserForAdminViewModel list = new UserForAdminViewModel();
+            list.CurrentPage = pageId;
+            list.PageCount = result.Count() / take;
+            list.Users = result.OrderBy(u => u.RegisterDate).Skip(skip).Take(take).ToList();
+
+            return list;
+        }
+
+        public long CreateUserByAdmin(CreateUserForAdminViewmodel model)
+        {
+            string imagePath = model.PathImage;
+
+            if (model.UserAvatar != null)
+            {
+
+                imagePath = UniqCode.GenerateUniqCode() + Path.GetExtension(model.UserAvatar.FileName);
+                imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", imagePath);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    model.UserAvatar.CopyTo(stream);
+                }
+            }
+
+            User user = new User()
+            {
+                UserAvatar = imagePath,
+                ActivateCode = UniqCode.GenerateUniqCode(),
+                Email = model.Email,
+                IsActive = true,
+                Password = model.Password,
+                RegisterDate = DateTime.Now,
+                UserName = model.UserName,
+                Isdeleted = false
+
+            };
+            return AddUser(user);
+        }
+
+
         public void EditProfile(string username, EditUserViewModel editUser)
         {
-            
+
             var user = GetUserBy(username);
             user.UserName = editUser.userName;
             user.Email = editUser.Email;

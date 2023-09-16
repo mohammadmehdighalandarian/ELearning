@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningSite", "LearningSit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "..\DataLayer\DataLayer.csproj", "{770B3533-AE5C-48C2-B881-8E558B2E6C0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningWeb_Core", "..\LearningWeb_Core\LearningWeb_Core.csproj", "{B6672825-419F-4AC1-A743-6E8E31E193D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningWeb_Core", "..\LearningWeb_Core\LearningWeb_Core.csproj", "{B6672825-419F-4AC1-A743-6E8E31E193D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
