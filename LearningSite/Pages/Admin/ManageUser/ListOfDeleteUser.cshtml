@@ -1,6 +1,6 @@
 ﻿@page
 @using LearningWeb_Core.Convertors
-@model LearningSite.Pages.Admin.ManageUser.IndexModel
+@model LearningSite.Pages.Admin.ManageUser.ListOfDeleteUserModel
 @{
 }
 <div class="row">
@@ -34,11 +34,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-12" style="margin: 10px 0;">
 
-                            <a asp-page="CreateUser" class="btn btn-outline btn-success">افزودن کاربر جدید</a>
-
-                        </div>
                         <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
                             <thead>
                                 <tr>
@@ -67,12 +63,15 @@
                                         </td>
                                         <td>@user.RegisterDate.To_Shamsi()</td>
                                         <td>
-                                            <a asp-route-id=@user.Id  asp-page="EditUser" class="btn btn-warning btn-sm">
-                                                ویرایش
-                                            </a>
-                                            <a  href="/Admin/ManageUser/DeleteUser/@user.Id" class="btn btn-danger btn-sm">
-                                                حذف
-                                            </a>
+
+                                            <form method="post">
+                                                <a asp-route-id=@user.Id asp-page="EditUser" class="btn btn-warning btn-sm">
+                                                    ویرایش
+                                                </a>
+                                                <input asp-route-id=@user.Id type="submit" value="بازنشانی" class="btn btn-success" />
+
+                                            </form>
+
                                         </td>
                                     </tr>
                                 }
@@ -103,3 +102,4 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
+

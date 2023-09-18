@@ -21,6 +21,8 @@ namespace LearningWeb_Core.Services
 
         User GetUserBy(string username);
 
+        User GetUserBy(long id);
+
         User getUserByActiveCode(string activeCode);
 
         User loginUser(LoginViewModel user);
@@ -69,6 +71,13 @@ namespace LearningWeb_Core.Services
 
         UserForAdminViewModel GetUsers(int pageId = 1, string filterEmail = "", string filterUserName = "");
         long CreateUserByAdmin(CreateUserForAdminViewmodel model);
+        EditUserByAdminViewModel ShowUserForEditbyAdmin(long id);
+        void EditUserByAmin(long id, EditUserByAdminViewModel model);
+        PannelAccountViewModel ShowInfoForDelete(long id);
+
+        void DeleteUser(long id);
+        UserForAdminViewModel GetDeleteUsers(int pageId = 1, string filterEmail = "", string filterUserName = "");
+        void ReAlloce(long id);
 
         #endregion
 

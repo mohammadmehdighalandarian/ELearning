@@ -9,6 +9,9 @@ namespace LearningWeb_Core.Services
         List<Role> GetAllRoles();
         void AddRole(List<long> role, long userId);
 
+        void UpdateRoles(List<long> role, long userId);
+
+
         #endregion
     }
 }

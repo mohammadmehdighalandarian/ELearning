@@ -6,6 +6,7 @@ using LearningWeb_Core.DTOs.AdminPanel;
 using LearningWeb_Core.DTOs.UserPanel;
 using LearningWeb_Core.DTOs.UserPanel.Wallet;
 using LearningWeb_Core.Generator;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace LearningWeb_Core.Services
@@ -42,6 +43,11 @@ namespace LearningWeb_Core.Services
         public User GetUserBy(string username)
         {
             return _siteContext.Users.SingleOrDefault(x => x.UserName == username);
+        }
+
+        public User GetUserBy(long id)
+        {
+            return _siteContext.Users.Find(id);
         }
 
         public User getUserByActiveCode(string activeCode)
@@ -186,15 +192,15 @@ namespace LearningWeb_Core.Services
 
             var variz = _siteContext.Wallets
                 .Where(x => x.UsersId == CurentUserId && x.IsPay == true && x.TypesId == 1)
-                .Select(x=>x.Amount)
+                .Select(x => x.Amount)
                 .ToList();
 
-            var Bardasht= _siteContext.Wallets
+            var Bardasht = _siteContext.Wallets
                 .Where(x => x.UsersId == CurentUserId && x.IsPay == true && x.TypesId == 2)
                 .Select(x => x.Amount)
                 .ToList();
-            
-            return variz.Sum()-Bardasht.Sum();
+
+            return variz.Sum() - Bardasht.Sum();
         }
 
         public List<WalletViewModel> GetAllTransactions(string username)
@@ -222,7 +228,7 @@ namespace LearningWeb_Core.Services
                 TypesId = 1,
                 UsersId = GetUserIdByUserName(userName)
             };
-           return AddWallet(wallet);
+            return AddWallet(wallet);
         }
 
         public long AddWallet(Wallet wallet)
@@ -249,12 +255,12 @@ namespace LearningWeb_Core.Services
 
             if (!string.IsNullOrEmpty(filterEmail))
             {
-                result = result.Where(u => u.Email.Contains(filterEmail));
+                result = result.Where(u => u.Email.Contains(filterEmail) && u.Isdeleted==false);
             }
 
             if (!string.IsNullOrEmpty(filterUserName))
             {
-                result = result.Where(u => u.UserName.Contains(filterUserName));
+                result = result.Where(u => u.UserName.Contains(filterUserName) && u.Isdeleted == false);
             }
             // Show Item In Page
             int take = 20;
@@ -264,7 +270,7 @@ namespace LearningWeb_Core.Services
             UserForAdminViewModel list = new UserForAdminViewModel();
             list.CurrentPage = pageId;
             list.PageCount = result.Count() / take;
-            list.Users = result.OrderBy(u => u.RegisterDate).Skip(skip).Take(take).ToList();
+            list.Users = result.Where(x=>x.Isdeleted==false).OrderBy(u => u.RegisterDate).Skip(skip).Take(take).ToList();
 
             return list;
         }
@@ -297,6 +303,104 @@ namespace LearningWeb_Core.Services
 
             };
             return AddUser(user);
+        }
+
+        public EditUserByAdminViewModel ShowUserForEditbyAdmin(long id)
+        {
+            return _siteContext
+                .Users
+                .Where(x => x.Id == id)
+                .Select(x => new EditUserByAdminViewModel
+                {
+                    UserName = x.UserName,
+                    Email = x.Email,
+                    PathImage = x.UserAvatar,
+                    Roles = _siteContext.UserRoles.Where(x => x.UserId == id).Select(x => x.RoleId).ToList()
+                }).Single();
+        }
+
+        public void EditUserByAmin(long id, EditUserByAdminViewModel model)
+        {
+            User user = GetUserBy(id);
+            user.Email = model.Email;
+            user.Password = model.Password;
+
+            string imagePath = model.PathImage;
+            if (model.UserAvatar != null)
+            {
+
+                if (imagePath != "Defualt.png")
+                {
+                    imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", imagePath);
+                    File.Delete(imagePath);
+                }
+
+                imagePath = UniqCode.GenerateUniqCode() + Path.GetExtension(model.UserAvatar.FileName);
+                imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserAvatar", imagePath);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    model.UserAvatar.CopyTo(stream);
+                }
+
+            }
+
+            user.UserAvatar = imagePath;
+
+            UpdateUser(user);
+            SaveChange();
+        }
+
+        public PannelAccountViewModel ShowInfoForDelete(long id)
+        {
+           return _siteContext.Users.Where(x => x.Id == id)
+                .Select(x => new PannelAccountViewModel
+                {
+                    UserName = x.UserName,
+                    Email = x.Email,
+                    RegisterDate = x.RegisterDate,
+                    Wallet = x.Wallets.Where(x=>x.UsersId==id).Select(x=>x.Amount).Sum()
+                }).Single();
+        }
+
+        public void DeleteUser(long id)
+        {
+            var user = GetUserBy(id);
+            user.IsActive = false;
+            user.Isdeleted = true;
+            SaveChange();
+        }
+
+        public UserForAdminViewModel GetDeleteUsers(int pageId = 1, string filterEmail = "", string filterUserName = "")
+        {
+            IQueryable<User> result = _siteContext.Users.IgnoreQueryFilters().Where(u => u.Isdeleted);
+
+            if (!string.IsNullOrEmpty(filterEmail))
+            {
+                result = result.Where(u => u.Email.Contains(filterEmail));
+            }
+
+            if (!string.IsNullOrEmpty(filterUserName))
+            {
+                result = result.Where(u => u.UserName.Contains(filterUserName));
+            }
+
+            // Show Item In Page
+            int take = 20;
+            int skip = (pageId - 1) * take;
+
+
+            UserForAdminViewModel list = new UserForAdminViewModel();
+            list.CurrentPage = pageId;
+            list.PageCount = result.Count() / take;
+            list.Users = result.OrderBy(u => u.RegisterDate).Skip(skip).Take(take).ToList();
+
+            return list;
+        }
+
+        public void ReAlloce(long id)
+        {
+            GetUserBy(id).Isdeleted = false;
+            SaveChange();
         }
 
 

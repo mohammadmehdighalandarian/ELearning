@@ -30,5 +30,14 @@ namespace LearningWeb_Core.Services
 
             _siteContext.SaveChanges();
         }
+
+        public void UpdateRoles(List<long> role, long userId)
+        {
+            var userRolesOfUser = _siteContext.UserRoles.Where(x => x.UserId == userId);
+            _siteContext.UserRoles.RemoveRange(userRolesOfUser);
+           
+           AddRole(role,userId);
+            
+        }
     }
 }
