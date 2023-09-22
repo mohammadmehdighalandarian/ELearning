@@ -255,12 +255,12 @@ namespace LearningWeb_Core.Services
 
             if (!string.IsNullOrEmpty(filterEmail))
             {
-                result = result.Where(u => u.Email.Contains(filterEmail) && u.Isdeleted==false);
+                result = result.Where(u => u.Email.Contains(filterEmail) );
             }
 
             if (!string.IsNullOrEmpty(filterUserName))
             {
-                result = result.Where(u => u.UserName.Contains(filterUserName) && u.Isdeleted == false);
+                result = result.Where(u => u.UserName.Contains(filterUserName) );
             }
             // Show Item In Page
             int take = 20;
@@ -270,7 +270,7 @@ namespace LearningWeb_Core.Services
             UserForAdminViewModel list = new UserForAdminViewModel();
             list.CurrentPage = pageId;
             list.PageCount = result.Count() / take;
-            list.Users = result.Where(x=>x.Isdeleted==false).OrderBy(u => u.RegisterDate).Skip(skip).Take(take).ToList();
+            list.Users = result.OrderBy(u => u.RegisterDate).Skip(skip).Take(take).ToList();
 
             return list;
         }

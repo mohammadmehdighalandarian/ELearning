@@ -8,8 +8,11 @@ namespace LearningWeb_Core.Services
 
         List<Role> GetAllRoles();
         void AddRole(List<long> role, long userId);
-
-        void UpdateRoles(List<long> role, long userId);
+        void UpdateRolesOfUser(List<long> role, long userId);
+        Role GetRole(long roleId);
+        void UpdateRole(Role role);
+        void DeleteRole(Role role);
+        void SaveChange();
 
 
         #endregion

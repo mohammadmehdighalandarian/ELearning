@@ -32,7 +32,7 @@ namespace LearningSite.Pages.Admin.ManageUser
             //    return Page();
 
             _userServices.EditUserByAmin(id,EditUserByAdmin);
-            _permitionServices.UpdateRoles(selectedRoles,id);
+            _permitionServices.UpdateRolesOfUser(selectedRoles,id);
 
             return RedirectToPage("/index");
         }

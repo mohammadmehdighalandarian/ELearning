@@ -31,13 +31,35 @@ namespace LearningWeb_Core.Services
             _siteContext.SaveChanges();
         }
 
-        public void UpdateRoles(List<long> role, long userId)
+        public void UpdateRolesOfUser(List<long> role, long userId)
         {
             var userRolesOfUser = _siteContext.UserRoles.Where(x => x.UserId == userId);
             _siteContext.UserRoles.RemoveRange(userRolesOfUser);
            
            AddRole(role,userId);
             
+        }
+
+        public Role GetRole(long roleId)
+        {
+            return _siteContext.Roles.Find(roleId);
+        }
+
+        public void UpdateRole(Role role)
+        {
+            _siteContext.Roles.Update(role);
+            SaveChange();
+        }
+
+        public void DeleteRole(Role role)
+        {
+            role.IsDeleted = true;
+            UpdateRole(role);
+        }
+
+        public void SaveChange()
+        {
+            _siteContext.SaveChanges();
         }
     }
 }

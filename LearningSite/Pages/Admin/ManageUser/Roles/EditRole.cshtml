@@ -1,0 +1,44 @@
+﻿@page 
+@using DataLayer.Entities.User
+@model LearningSite.Pages.Admin.ManageUser.Roles.EditRoleModel
+@{
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">ویرایش نقش </h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Role.Id" />
+        <input type="hidden" asp-for="Role.RoleName"/>
+        <div class="col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    ویرایش نقش "@Model.Role.RoleName"
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <input type="hidden" asp-for="Role.Id" />
+                    <input type="hidden" asp-for="Role.RoleName" />
+                    <div class="form-group">
+                        <label>عنوان نقش</label>
+                        <input type="text" name="Title" asp-for="Role.RoleName" class="form-control">
+                    </div>
+                    <input type="submit" value="ذخیره اطلاعات" class="btn btn-success" />
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+               
+            </div>
+
+        </div>
+
+    </form>
+</div>

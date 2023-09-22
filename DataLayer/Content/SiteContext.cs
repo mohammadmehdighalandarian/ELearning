@@ -32,11 +32,18 @@ namespace DataLayer.Content
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserMapping());
-            modelBuilder.ApplyConfiguration(new UserRoleMapping());
-            modelBuilder.ApplyConfiguration(new RoleMapping());
-            modelBuilder.ApplyConfiguration(new WalletMapping());
-            modelBuilder.ApplyConfiguration(new WalletTypeMapping());
+            //modelBuilder.ApplyConfiguration(new UserMapping());
+            //modelBuilder.ApplyConfiguration(new UserRoleMapping());
+            //modelBuilder.ApplyConfiguration(new RoleMapping());
+            //modelBuilder.ApplyConfiguration(new WalletMapping());
+            //modelBuilder.ApplyConfiguration(new WalletTypeMapping());
+            modelBuilder.Entity<User>().HasQueryFilter(u => u.Isdeleted==false);
+            modelBuilder.Entity<Role>().HasQueryFilter(x => x.IsDeleted==false);
+
+            var assembly=typeof(UserMapping).Assembly;
+            modelBuilder.ApplyConfigurationsFromAssembly(assembly);
+
+            
 
         }
     }

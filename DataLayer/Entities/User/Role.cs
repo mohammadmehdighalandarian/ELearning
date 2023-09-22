@@ -7,5 +7,7 @@
         public string RoleName { get; set; }
 
         public List<UserRole> UserRoles { get; set; }
+
+        public bool  IsDeleted { get; set; }
     }
 }
