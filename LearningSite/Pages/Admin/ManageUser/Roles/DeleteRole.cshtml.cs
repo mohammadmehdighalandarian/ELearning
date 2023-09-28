@@ -1,10 +1,12 @@
 using DataLayer.Entities.User;
+using LearningWeb_Core.Security;
 using LearningWeb_Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LearningSite.Pages.Admin.ManageUser.Roles
 {
+    [PermissionChecker(8)]
     public class DeleteRoleModel : PageModel
     {
         private readonly IPermitionServices _permitionServices;

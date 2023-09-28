@@ -22,6 +22,78 @@ namespace DataLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DataLayer.Entities.Course.CourseGroup", b =>
+                {
+                    b.Property<int>("GroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupId"));
+
+                    b.Property<string>("GroupTitle")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GroupId");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("CourseGroups");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.Permision.Permision", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("ParentID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PermissionTitle")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentID");
+
+                    b.ToTable("Permisions");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.Permision.RolePermision", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("PermissionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RolePermisions");
+                });
+
             modelBuilder.Entity("DataLayer.Entities.User.Role", b =>
                 {
                     b.Property<long>("Id")
@@ -163,6 +235,39 @@ namespace DataLayer.Migrations
                     b.ToTable("WalletTypes");
                 });
 
+            modelBuilder.Entity("DataLayer.Entities.Course.CourseGroup", b =>
+                {
+                    b.HasOne("DataLayer.Entities.Course.CourseGroup", null)
+                        .WithMany("CourseGroups")
+                        .HasForeignKey("ParentId");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.Permision.Permision", b =>
+                {
+                    b.HasOne("DataLayer.Entities.Permision.Permision", null)
+                        .WithMany("Parents")
+                        .HasForeignKey("ParentID");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.Permision.RolePermision", b =>
+                {
+                    b.HasOne("DataLayer.Entities.Permision.Permision", "Permision")
+                        .WithMany("RolePermisions")
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataLayer.Entities.User.Role", "Role")
+                        .WithMany("RolePermisions")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Permision");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("DataLayer.Entities.User.UserRole", b =>
                 {
                     b.HasOne("DataLayer.Entities.User.Role", "Role")
@@ -201,8 +306,22 @@ namespace DataLayer.Migrations
                     b.Navigation("WalletType");
                 });
 
+            modelBuilder.Entity("DataLayer.Entities.Course.CourseGroup", b =>
+                {
+                    b.Navigation("CourseGroups");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.Permision.Permision", b =>
+                {
+                    b.Navigation("Parents");
+
+                    b.Navigation("RolePermisions");
+                });
+
             modelBuilder.Entity("DataLayer.Entities.User.Role", b =>
                 {
+                    b.Navigation("RolePermisions");
+
                     b.Navigation("UserRoles");
                 });
 

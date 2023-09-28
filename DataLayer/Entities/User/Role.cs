@@ -1,4 +1,6 @@
-﻿namespace DataLayer.Entities.User
+﻿using DataLayer.Entities.Permision;
+
+namespace DataLayer.Entities.User
 {
     public class Role
     {
@@ -9,5 +11,12 @@
         public List<UserRole> UserRoles { get; set; }
 
         public bool  IsDeleted { get; set; }
+
+
+        #region Relation
+
+        public List<RolePermision> RolePermisions { get; set; }
+
+        #endregion
     }
 }

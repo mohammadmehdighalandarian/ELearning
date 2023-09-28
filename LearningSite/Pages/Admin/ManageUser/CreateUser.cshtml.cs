@@ -1,11 +1,13 @@
 using DataLayer.Entities.User;
 using LearningWeb_Core.DTOs.AdminPanel;
+using LearningWeb_Core.Security;
 using LearningWeb_Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LearningSite.Pages.Admin.ManageUser
 {
+    [PermissionChecker(3)]
     public class CreateUserModel : PageModel
     {
         private readonly IUserServices _userServices;
@@ -36,7 +38,7 @@ namespace LearningSite.Pages.Admin.ManageUser
             long userId = _userServices.CreateUserByAdmin(CreateUserForAdminViewmodel);
 
             //Add Roles
-            _permitionServices.AddRole(selectedRoles,userId);
+            _permitionServices.AddRoleToUser(selectedRoles,userId);
 
 
             return Redirect("/Admin/ManageUser");

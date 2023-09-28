@@ -29,6 +29,7 @@ builder.Services.AddDbContext<SiteContext>(options =>
 builder.Services.AddTransient<IUserServices, UserServices>();
 builder.Services.AddTransient<IViewRenderService, RenderViewToString>();
 builder.Services.AddTransient<IPermitionServices, PermitionServices>();
+builder.Services.AddTransient<ICourseService, CourseService>();
 
 #endregion
 

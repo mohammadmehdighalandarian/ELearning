@@ -1,10 +1,12 @@
 using LearningWeb_Core.DTOs.UserPanel;
+using LearningWeb_Core.Security;
 using LearningWeb_Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LearningSite.Pages.Admin.ManageUser
 {
+    [PermissionChecker(5)]
     public class DeleteUserModel : PageModel
     {
         private readonly IUserServices _userServices;
