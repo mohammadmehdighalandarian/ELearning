@@ -71,5 +71,8 @@ namespace DataLayer.Entities.Course
         public List<CourseEpisode> CourseEpisodes { get; set; }
 
         #endregion
+
+
+       
     }
 }
